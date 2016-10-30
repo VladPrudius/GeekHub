@@ -1,26 +1,24 @@
 package com.app.lesson2;
 
-import java.util.Scanner;
-
 class Circle implements Shape {
 
-    private double perimeter, area, radius;
+    private double perimeter;
+    private double area;
 
     Circle() {
         perimeter = 0;
         area = 0;
-        System.out.print("Введите радиус круга: ");
-        Scanner scan = new Scanner(System.in);
-        radius = scan.nextDouble();
     }
 
-    public void calculateArea() {
+    public double calculateArea(double radius) {
+
         area = (Math.PI * Math.pow(radius, 2));
-        System.out.format("Радиус круга = %.3f%n", area);
+        return area;
     }
 
-    public void calculatePerimeter() {
+    public double calculatePerimeter(double radius) {
+
         perimeter = (2 * Math.PI * radius);
-        System.out.format("Периметр круга =  %.3f%n", perimeter);
+        return perimeter;
     }
 }

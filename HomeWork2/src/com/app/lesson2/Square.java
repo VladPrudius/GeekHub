@@ -1,36 +1,43 @@
 package com.app.lesson2;
 
-import java.util.Scanner;
+public class Square implements Shape {
 
-public class Square {
-
-    private double areaRectangle, perimetrRectangle, polPerimetr, areaTriangle, perimetrTriangle, b;
-    private int a;
+    private double areaRectangle;
+    private double perimetrRectangle;
+    private double polPerimetr;
+    private double areaTriangle;
+    private double perimetrTriangle;
+    private double b;
 
     Square() {
         perimetrRectangle = 0;
         areaRectangle = 0;
-        System.out.print("Введите длину стороны А: ");
-        Scanner scan = new Scanner(System.in);
-        a = scan.nextInt();
+
     }
 
-    public void calculateArea() {
+    public double calculateArea( double a) {
 
         areaRectangle = Math.pow(a, 2);
         b = Math.sqrt(2 * (Math.pow(a, 2)));
-        polPerimetr = (2 * a + b) / 2;
-        areaTriangle = Math.sqrt(polPerimetr * 2 * (polPerimetr - a) * (polPerimetr - b));
-        System.out.format("calculateAreaRectangle = %.3f%n", areaRectangle);
-        System.out.format("calculateAreaTriangle = %.3f%n", areaTriangle);
-
+        return areaRectangle;
     }
 
-    public void calculatePerimeter() {
-        perimetrRectangle = 4 * a;
-        perimetrTriangle = 2 * a + b;
-        System.out.println("create calculatePerimeterRectangle = " + perimetrRectangle);
-        System.out.println("create calculatePerimeterTriangle = " + perimetrTriangle);
+    public double calculateAreaTriangle(double a) {
 
+        polPerimetr = (2 * a + b) / 2;
+        areaTriangle = Math.sqrt(polPerimetr * 2 * (polPerimetr - a) * (polPerimetr - b));
+        return areaTriangle;
+    }
+
+    public double calculatePerimeter(double a) {
+
+        perimetrRectangle = 4 * a;
+        return perimetrRectangle;
+    }
+
+    public double calculatePerimetrTriangle(double a) {
+
+        perimetrTriangle = 2 * a + b;
+        return perimetrTriangle;
     }
 }

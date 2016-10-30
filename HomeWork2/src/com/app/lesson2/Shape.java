@@ -1,6 +1,6 @@
 package com.app.lesson2;
 
 public interface Shape {
-    public void calculateArea();
-    public void calculatePerimeter();
+    public double  calculateArea(double area);
+    public double calculatePerimeter(double radius);
 }

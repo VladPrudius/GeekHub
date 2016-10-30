@@ -1,6 +1,6 @@
 package com.app.lesson2;
 
-public enum TypeShape {
+public enum ShapeType {
     Circle,
     Square,
     Rectangle,

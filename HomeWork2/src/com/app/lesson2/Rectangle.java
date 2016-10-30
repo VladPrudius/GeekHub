@@ -1,38 +1,48 @@
 package com.app.lesson2;
 
-import java.util.Scanner;
-
 public class Rectangle implements Shape {
 
-    private double areaRectangle, perimetrRectangle, c, polPerimetr, areaTriangle, perimetrTriangle;
-    private int a, b;
+    private double areaRectangle;
+    private double perimetrRectangle;
+    private double polPerimetr;
+    private double areaTriangle;
+    private double perimetrTriangle;
+    private double c;
 
     Rectangle() {
         perimetrRectangle = 0;
         areaRectangle = 0;
-        System.out.print("Введите длину стороны А: ");
-        Scanner scan = new Scanner(System.in);
-        a = scan.nextInt();
-        System.out.print("Введите длину стороны B: ");
-        b = scan.nextInt();
     }
 
-    public void calculateArea() {
+    public double calculateArea(double areaRectangle) {
+       return 0;
+    }
+
+    public double calculatePerimeter(double radius) {
+        return 0;
+    }
+
+    public double calculateArea(double a, double b) {
 
         areaRectangle = a * b;
+        return areaRectangle;
+    }
+    public double calculateAreaTriangle(double a, double b){
+
         c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
         polPerimetr = (a + b + c) / 2;
         areaTriangle = Math.sqrt(polPerimetr * (polPerimetr - a) * (polPerimetr - b) * (polPerimetr - c));
-        System.out.format("calculateAreaRectangle = %.3f%n", areaRectangle);
-        System.out.format("calculateAreaTriangle = %.3f%n", areaTriangle);
-
+        return  areaTriangle;
     }
 
-    public void calculatePerimeter() {
-        perimetrRectangle = 2 * (a + b);
-        perimetrTriangle = a + b + c;
-        System.out.println("create calculatePerimeterRectangle = " + perimetrRectangle);
-        System.out.println("create calculatePerimeterTriangle = " + perimetrTriangle);
+    public double calculatePerimeter(double a, double b) {
 
+        perimetrRectangle = 2 * (a + b);
+        return perimetrRectangle;
+    }
+    public double calculatePerimeterTriangle(double a, double b){
+
+        perimetrTriangle = a + b + c;
+        return perimetrTriangle;
     }
 }
