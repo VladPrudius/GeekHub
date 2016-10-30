@@ -2,47 +2,34 @@ package com.app.lesson2;
 
 public class Rectangle implements Shape {
 
-    private double areaRectangle;
-    private double perimetrRectangle;
     private double polPerimetr;
-    private double areaTriangle;
-    private double perimetrTriangle;
+    private double a;
+    private double b;
     private double c;
 
-    Rectangle() {
-        perimetrRectangle = 0;
-        areaRectangle = 0;
+    Rectangle(double a, double b) {
+        this.a = a;
+        this.b = b;
     }
 
-    public double calculateArea(double areaRectangle) {
-       return 0;
+    @Override
+    public double calculateArea() {
+        return a * b;
     }
 
-    public double calculatePerimeter(double radius) {
-        return 0;
-    }
-
-    public double calculateArea(double a, double b) {
-
-        areaRectangle = a * b;
-        return areaRectangle;
-    }
-    public double calculateAreaTriangle(double a, double b){
+    public double calculateAreaTriangle(){
 
         c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
         polPerimetr = (a + b + c) / 2;
-        areaTriangle = Math.sqrt(polPerimetr * (polPerimetr - a) * (polPerimetr - b) * (polPerimetr - c));
-        return  areaTriangle;
+        return  Math.sqrt(polPerimetr * (polPerimetr - a) * (polPerimetr - b) * (polPerimetr - c));
     }
 
-    public double calculatePerimeter(double a, double b) {
-
-        perimetrRectangle = 2 * (a + b);
-        return perimetrRectangle;
+    @Override
+    public double calculatePerimeter() {
+        return 2 * (a + b);
     }
-    public double calculatePerimeterTriangle(double a, double b){
 
-        perimetrTriangle = a + b + c;
-        return perimetrTriangle;
+    public double calculatePerimeterTriangle(){
+        return a + b + c;
     }
 }

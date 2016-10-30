@@ -12,49 +12,50 @@ public class HomeWork2 {
         System.out.println("Введите название фигуры: ");
         str = scan.nextLine();
 
-        if (str.equals(ShapeType.Circle.toString())) {
+        if (str.equals(ShapeType.CIRCLE.toString())) {
             System.out.println("Вы выбрали фигуру: " + str);
-            Circle circle = new Circle();
+
             System.out.print("Введите радиус круга: ");
             area = scan.nextDouble();
-            System.out.format("Радиус круга = %.3f%n", circle.calculateArea(area));
-            System.out.format("Периметр круга =  %.3f%n", circle.calculatePerimeter(area));
+            Circle circle = new Circle(area);
+            System.out.format("Радиус круга = %.3f%n", circle.calculateArea());
+            System.out.format("Периметр круга =  %.3f%n", circle.calculatePerimeter());
         }
-        if (str.equals(ShapeType.Triangle.toString())) {
+        if (str.equals(ShapeType.TRIANGLE.toString())) {
             System.out.println("Вы выбрали фигуру: " + str);
-            Triangle triangle = new Triangle();
             System.out.print("Введите длину стороны А: ");
             a = scan.nextInt();
             System.out.print("Введите длину стороны B: ");
             b = scan.nextInt();
             System.out.print("Введите длину стороны C: ");
             c = scan.nextInt();
-            System.out.format("calculateArea = %.3f%n",  triangle.calculateArea(a, b, c));
-            System.out.println("calculatePerimeter = " + triangle.calculatePerimeter(a, b, c));
+            Triangle triangle = new Triangle(a, b, c);
+            System.out.format("calculateArea = %.3f%n",  triangle.calculateArea());
+            System.out.println("calculatePerimeter = " + triangle.calculatePerimeter());
         }
 
-        if (str.equals(ShapeType.Square.toString())) {
+        if (str.equals(ShapeType.SQUARE.toString())) {
             System.out.println("Вы выбрали фигуру: " + str);
-            Square square = new Square();
             System.out.print("Введите длину стороны А: ");
             a = scan.nextInt();
-            System.out.format("calculateAreaSquare = %.3f%n",    square.calculateArea(a));
-            System.out.format("calculateAreaTriangle = %.3f%n",  square.calculateAreaTriangle(a));
-            System.out.println("calculatePerimeterSquare = " +   square.calculatePerimeter(a));
-            System.out.println("calculatePerimeterTriangle = " + square.calculatePerimetrTriangle(a));
+            Square square = new Square(a);
+            System.out.format("calculateAreaSquare = %.3f%n",    square.calculateArea());
+            System.out.format("calculateAreaTriangle = %.3f%n",  square.calculateAreaTriangle());
+            System.out.println("calculatePerimeterSquare = " +   square.calculatePerimeter());
+            System.out.println("calculatePerimeterTriangle = " + square.calculatePerimetrTriangle());
         }
 
-        if (str.equals(ShapeType.Rectangle.toString())) {
+        if (str.equals(ShapeType.RECTANGLE.toString())) {
             System.out.println("Вы выбрали фигуру: " + str);
-            Rectangle rectangle = new Rectangle();
             System.out.print("Введите длину стороны А: ");
             a = scan.nextInt();
             System.out.print("Введите длину стороны B: ");
             b = scan.nextInt();
-            System.out.format("calculateAreaRectangle = %.3f%n", rectangle.calculateArea(a , b));
-            System.out.format("calculateAreaTriangle = %.3f%n", rectangle.calculateAreaTriangle(a, b));
-            System.out.println("calculatePerimeterRectangle = " + rectangle.calculatePerimeter(a, b));
-            System.out.println("calculatePerimeterTriangle = " + rectangle.calculatePerimeterTriangle(a, b));
+            Rectangle rectangle = new Rectangle(a, b);
+            System.out.format("calculateAreaRectangle = %.3f%n", rectangle.calculateArea());
+            System.out.format("calculateAreaTriangle = %.3f%n", rectangle.calculateAreaTriangle());
+            System.out.println("calculatePerimeterRectangle = " + rectangle.calculatePerimeter());
+            System.out.println("calculatePerimeterTriangle = " + rectangle.calculatePerimeterTriangle());
 
         }
 
