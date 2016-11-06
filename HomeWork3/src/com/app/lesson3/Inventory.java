@@ -15,7 +15,6 @@ public class Inventory {
         products.add(product);
     }
 
-
     public double calculateInventoryValue(ProductType type) {
         List<Product> products = productsByType.get(type);
         if (products == null) {
