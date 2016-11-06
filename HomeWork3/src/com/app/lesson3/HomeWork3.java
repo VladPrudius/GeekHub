@@ -46,5 +46,6 @@ public class HomeWork3 {
         System.out.println("Сума стоимости сыров = " + inventory.calculateInventoryValue(ProductType.CHEESE));
         System.out.println("Сума стоимости батонов = " + inventory.calculateInventoryValue(ProductType.LOAF));
         System.out.println("Сума стоимости колбасы = " + inventory.calculateInventoryValue(ProductType.SAUSAGE));
+        System.out.println("Общая стоимость всех товаров = " + inventory.calculateInventoryValue());
     }
 }
