@@ -3,18 +3,18 @@ package com.app.lesson3;
 public class Product {
 
     private String name;
-    private  int price;
+    private double price;
 
-    Product(String name, int price){
+    Product(String name, double price) {
         this.name = name;
         this.price = price;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getPrice(){
+    public double getPrice() {
         return price;
     }
 }
