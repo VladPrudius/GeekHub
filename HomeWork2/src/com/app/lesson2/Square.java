@@ -2,31 +2,22 @@ package com.app.lesson2;
 
 public class Square implements Shape {
 
-    private double polPerimetr;
-    private double b;
-    private double a;
+    Triangle triangle;
 
-    Square(double a) {
-        this.a = a;
+    Square(Triangle triangle){
+        this.triangle = triangle;
     }
 
     @Override
     public double calculateArea() {
-        return Math.pow(a, 2);
+
+        return triangle.calculateArea() + triangle.calculateArea();
     }
 
     @Override
     public double calculatePerimeter() {
-        return 4 * a;
+        return triangle.calculatePerimeter() + triangle.calculatePerimeter() - triangle.c * 2;
     }
 
-    public double calculateAreaTriangle() {
-        b = Math.sqrt(2 * (Math.pow(a, 2)));
-        polPerimetr = (2 * a + b) / 2;
-        return Math.sqrt(polPerimetr * 2 * (polPerimetr - a) * (polPerimetr - b));
-    }
 
-    public double calculatePerimetrTriangle() {
-        return 2 * a + b;
-    }
 }

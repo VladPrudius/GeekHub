@@ -30,11 +30,11 @@ public class Inventory {
     }
 
     public double calculateInventoryValue() {
-        double priceAllProduct = 0;
+        double price = 0;
         Set<ProductType> categories = productsByType.keySet();
         for (ProductType category : categories) {
-            priceAllProduct += calculateInventoryValue(category);
+            price += calculateInventoryValue(category);
         }
-        return priceAllProduct;
+        return price;
     }
 }
