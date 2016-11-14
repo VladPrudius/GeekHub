@@ -10,7 +10,7 @@ public interface TaskManager {
 
     void remove(LocalDateTime date);
 
-    Set<LocalDateTime> getCategories();
+    Set<String> getCategories();
 
     Map<String, List<Task>> getTasksByCategories(String... categories);
 

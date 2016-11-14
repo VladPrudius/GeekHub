@@ -22,9 +22,15 @@ public class Manager implements TaskManager {
     }
 
     @Override
-    public Set<LocalDateTime> getCategories() {
-        Set<LocalDateTime> keyByLocalDateTime = taskByTime.keySet();
-        return keyByLocalDateTime;
+    public Set<String> getCategories() {
+        Set<String> categories = new HashSet<>();
+        for (Map.Entry<LocalDateTime, List<Task>> entry : taskByTime.entrySet()) {
+            List<Task> getCategoryByList = entry.getValue();
+            for (Task task : getCategoryByList) {
+                categories.add(task.getCategory());
+            }
+        }
+        return categories;
     }
 
     @Override
@@ -39,17 +45,27 @@ public class Manager implements TaskManager {
 
     @Override
     public List<Task> getTasksByCategory(String category) {
-        List<Task> getTasks = taskByTime.get(category);
+        List<Task> getTasks = new ArrayList<>();
+        for (Map.Entry<LocalDateTime, List<Task>> entry : taskByTime.entrySet()) {
+            List<Task> getCategoryByList = entry.getValue();
+            for (Task task : getCategoryByList) {
+                if (category.equals(task.getCategory())) {
+                    getTasks.add(task);
+                }
+            }
+        }
         return getTasks;
     }
 
     @Override
     public List<Task> getTasksForToday() {
         List<Task> taskForToday = new ArrayList<>();
-        Set<LocalDateTime> localDate = taskByTime.keySet();
-        for (LocalDateTime date : localDate) {
-            if (date.toLocalDate().equals(LocalDate.now())) {
-                taskForToday = taskByTime.get(date);
+        for (Map.Entry<LocalDateTime, List<Task>> entry : taskByTime.entrySet()) {
+            List<Task> taskForTodays = entry.getValue();
+            for (Task task : taskForTodays) {
+                if (entry.getKey().equals(LocalDateTime.now())) {
+                    taskForToday.add(task);
+                }
             }
         }
         return taskForToday;
