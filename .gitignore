@@ -45,7 +45,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 ### Java template
-*.class
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -63,6 +63,6 @@ hs_err_pid*
 GeekHub.iml
 /HomeWork2/HomeWork2.iml
 /HomeWork3/HomeWork3.iml
-/HomeWork4/HomeWork4.iml
-HomeWork4/HomeWork4.iml
 src/
+/HomeWorks4/HomeWorks4.iml
+textTest.txt
