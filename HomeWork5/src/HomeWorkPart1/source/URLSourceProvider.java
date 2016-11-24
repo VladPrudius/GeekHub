@@ -15,8 +15,12 @@ public class URLSourceProvider implements SourceProvider {
 
     @Override
     public boolean isAllowed(String pathToSource) {
-        String state = new String(pathToSource);
-        return (state.startsWith("HTTP") ? true : false);
+        try {
+            URL url = new URL(pathToSource);
+            return true;
+        } catch (MalformedURLException e) {
+            return false;
+        }
     }
 
     @Override

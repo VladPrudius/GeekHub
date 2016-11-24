@@ -13,7 +13,7 @@ public class FileSourceProvider implements SourceProvider {
     @Override
     public boolean isAllowed(String pathToSource) {
         File file =  new File(pathToSource);
-        return (file.isFile() ? true : false);
+        return file.isFile();
     }
 
     @Override

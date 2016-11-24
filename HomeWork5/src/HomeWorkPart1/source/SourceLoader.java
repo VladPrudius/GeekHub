@@ -13,7 +13,8 @@ public class SourceLoader {
     private List<SourceProvider> sourceProviders = new ArrayList<>();
 
     public SourceLoader() {
-        //TODO: initialize me
+        sourceProviders.add(new FileSourceProvider());
+        sourceProviders.add(new URLSourceProvider());
     }
 
     public String loadSource(String pathToSource) throws SourceLoadingException {
