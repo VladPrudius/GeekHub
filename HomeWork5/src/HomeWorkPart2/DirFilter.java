@@ -10,23 +10,23 @@ public class DirFilter extends IOException {
         try (ZipOutputStream txtZip = new ZipOutputStream(new FileOutputStream("/txt.zip"));
              ZipOutputStream bmpZip = new ZipOutputStream(new FileOutputStream("/bmp.zip"));
              ZipOutputStream musicZip = new ZipOutputStream(new FileOutputStream("/mp3.zip"));) {
-            File f = new File(szDir);
-            File[] sDirList = f.listFiles();
+            File file = new File(szDir);
+            File[] dirList = file.listFiles();
             String name;
             String path;
 
-            for (File list : sDirList) {
-                File f1 = new File(list.getCanonicalPath());
-                if (f1.isFile()) {
-                    name = f1.getName();
-                    path = f1.getParent();
+            for (File list : dirList) {
+                File fileOrDirectory = new File(list.getCanonicalPath());
+                if (fileOrDirectory.isFile()) {
+                    name = fileOrDirectory.getName();
+                    path = fileOrDirectory.getParent();
                     int lastIndex = name.lastIndexOf('.');
-                    String str = name.substring(lastIndex);
-                    if (str.equals(".txt")) {
+                    String typeOfFile = name.substring(lastIndex);
+                    if (typeOfFile.equals(".txt")) {
                         addFileToZip(txtZip, path, name);
-                    } else if (str.equals(".mp3")) {
+                    } else if (typeOfFile.equals(".mp3")) {
                         addFileToZip(musicZip, path, name);
-                    } else if (str.equals(".bmp")) {
+                    } else if (typeOfFile.equals(".bmp")) {
                         addFileToZip(bmpZip, path, name);
                     }
                 } else {
@@ -42,26 +42,22 @@ public class DirFilter extends IOException {
         return szDir;
     }
 
-    static void addFileToZip(ZipOutputStream zos, String szPath, String szName) throws IOException {
+    static void addFileToZip(ZipOutputStream zip, String path, String name) throws IOException {
 
-        System.out.println(szPath + szName);
-        ZipEntry ze;
-        ze = new ZipEntry(szName);
-        zos.putNextEntry(ze);
+        ZipEntry file = new ZipEntry(name);
+        zip.putNextEntry(file);
 
-        FileInputStream fis = new FileInputStream(szPath + File.separator + szName);
+        FileInputStream fileInputStream = new FileInputStream(path + File.separator + name);
         byte[] buf = new byte[500];
         int nLength;
-        while(true)
-        {
-            nLength = fis.read(buf);
-            if(nLength < 0)
+        while (true) {
+            nLength = fileInputStream.read(buf);
+            if (nLength < 0)
                 break;
-            zos.write(buf, 0, nLength);
+            zip.write(buf, 0, nLength);
         }
-        zos.flush();
-        zos.closeEntry();
-        fis.close();
-
+        zip.flush();
+        zip.closeEntry();
+        fileInputStream.close();
     }
 }
