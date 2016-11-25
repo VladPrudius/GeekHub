@@ -1,18 +1,14 @@
 package HomeWorkPart1.source;
 
 import HomeWorkPart1.SourceLoadingException;
+
 import java.io.*;
 
-/**
- * Implementation for loading content from local file system.
- * This implementation supports absolute paths to local file system without specifying file:// protocol.
- * Examples c:/1.txt or d:/pathToFile/file.txt
- */
 public class FileSourceProvider implements SourceProvider {
 
     @Override
     public boolean isAllowed(String pathToSource) {
-        File file =  new File(pathToSource);
+        File file = new File(pathToSource);
         return file.isFile();
     }
 
@@ -23,9 +19,9 @@ public class FileSourceProvider implements SourceProvider {
         try {
             BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
             try {
-                String s;
-                while ((s = in.readLine()) != null) {
-                    bilder.append(s);
+                String line;
+                while ((line = in.readLine()) != null) {
+                    bilder.append(line);
                 }
                 in.close();
             } catch (IOException e) {

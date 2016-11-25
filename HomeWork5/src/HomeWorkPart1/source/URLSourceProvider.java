@@ -7,10 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-/**
- * Implementation for loading content from specified URL.<br/>
- * Valid paths to load are http://someurl.com, https://secureurl.com, ftp://frpurl.com etc.
- */
 public class URLSourceProvider implements SourceProvider {
 
     @Override
@@ -25,11 +21,11 @@ public class URLSourceProvider implements SourceProvider {
 
     @Override
     public String load(String pathToSource) throws SourceLoadingException {
-        String s = pathToSource;
+        String path = pathToSource;
         String contents = "";
-        String a;
+        String line;
         try {
-            URL url = new URL(s);
+            URL url = new URL(path);
             URLConnection connection = url.openConnection();
             connection.setDoOutput(true);
 
@@ -37,10 +33,9 @@ public class URLSourceProvider implements SourceProvider {
                     new InputStreamReader(
                             connection.getInputStream()));
 
-            while ((a = in.readLine()) != null) {
-                contents += a;
+            while ((line = in.readLine()) != null) {
+                contents += line;
             }
-
             in.close();
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -49,7 +44,6 @@ public class URLSourceProvider implements SourceProvider {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return contents.toString();
     }
 }
