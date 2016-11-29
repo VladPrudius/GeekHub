@@ -1,7 +1,10 @@
 package HomeWorkPart1;
 
-import java.io.IOException;
+public class SourceLoadingException extends Exception {
+    public SourceLoadingException() {
+    }
 
-public class SourceLoadingException extends IOException {
-
+    public SourceLoadingException(Throwable cause) {
+        super(cause);
+    }
 }

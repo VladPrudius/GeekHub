@@ -1,6 +1,7 @@
 package HomeWorkPart1.source;
 
 import HomeWorkPart1.SourceLoadingException;
+import HomeWorkPart1.source.util.IOUtils;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -12,7 +13,7 @@ public class URLSourceProvider implements SourceProvider {
     @Override
     public boolean isAllowed(String pathToSource) {
         try {
-            URL url = new URL(pathToSource);
+            new URL(pathToSource);
             return true;
         } catch (MalformedURLException e) {
             return false;
@@ -21,29 +22,11 @@ public class URLSourceProvider implements SourceProvider {
 
     @Override
     public String load(String pathToSource) throws SourceLoadingException {
-        String path = pathToSource;
-        String contents = "";
-        String line;
         try {
-            URL url = new URL(path);
-            URLConnection connection = url.openConnection();
-            connection.setDoOutput(true);
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(
-                            connection.getInputStream()));
-
-            while ((line = in.readLine()) != null) {
-                contents += line;
-            }
-            in.close();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            URL url = new URL(pathToSource);
+            return IOUtils.toString(url.openStream());
+        }catch (IOException e){
+            throw new SourceLoadingException(e);
         }
-        return contents.toString();
     }
 }

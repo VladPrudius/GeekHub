@@ -6,6 +6,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 
 import HomeWorkPart1.source.URLSourceProvider;
+import HomeWorkPart1.source.util.IOUtils;
 
 public class Translator {
 
@@ -19,38 +20,24 @@ public class Translator {
     }
 
     public String translate(String original) throws TranslateException {
-        String translateText = "";
         try {
-            URL url = new URL(prepareURL(original));
-            URLConnection connection = url.openConnection();
-            connection.setDoOutput(true);
-
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(
-                            connection.getInputStream()));
-
-            while (in.readLine() != null) {
-                translateText += in.readLine().toString();
-            }
-            in.close();
+            URL preparedUrl = new URL(prepareURL(original));
+            String response = IOUtils.toString(preparedUrl.openStream());
+            return parseContent(response);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new TranslateException(e);
         }
-        return parseContent(translateText);
     }
 
     private String prepareURL(String text) throws IOException {
         return "https://translate.yandex.net/api/v1.5/tr/translate?key=" + YANDEX_API_KEY + "&text=" + encodeText(text) + "&lang=" + TRANSLATION_DIRECTION;
     }
 
-    private String parseContent(String content) {
-        int firstIndex = content.indexOf("<text>") + 6;
-        int lastIndex = content.lastIndexOf("</text>");
-        return content.substring(firstIndex, lastIndex);
+    private String encodeText(String text) throws IOException {
+        return URLEncoder.encode(text, "UTF-8");
     }
 
-    private String encodeText(String text) throws IOException {
-        String stringToReverse = URLEncoder.encode(text, "UTF-8");
-        return stringToReverse;
+    private String parseContent(String content) {
+        return content.substring(content.indexOf("<text") + 6, content.lastIndexOf("</text>"));
     }
 }

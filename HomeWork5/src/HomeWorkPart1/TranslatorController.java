@@ -21,8 +21,8 @@ public class TranslatorController {
 
                 System.out.println("Original: " + source);
                 System.out.println("Translation: " + translation);
-            } catch (TranslateException e) {
-                e.printStackTrace();
+            } catch (TranslateException | SourceLoadingException e) {
+                throw new IOException(e);
             }
             command = scanner.next();
         }

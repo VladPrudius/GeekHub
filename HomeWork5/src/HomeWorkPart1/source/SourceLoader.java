@@ -15,14 +15,11 @@ public class SourceLoader {
     }
 
     public String loadSource(String pathToSource) throws SourceLoadingException {
-        File pathToFile = new File(pathToSource);
-
-        if (pathToFile.isFile()) {
-            FileSourceProvider fileSourceProvider = new FileSourceProvider();
-            return (fileSourceProvider.isAllowed(pathToSource) ? fileSourceProvider.load(pathToSource) : null);
-        } else {
-            URLSourceProvider urlSourceProvider = new URLSourceProvider();
-            return (urlSourceProvider.isAllowed(pathToSource) ? urlSourceProvider.load(pathToSource) : null);
+        for (SourceProvider sp: sourceProviders){
+            if(sp.isAllowed(pathToSource)){
+                return sp.load(pathToSource);
+            }
         }
+        throw new SourceLoadingException();
     }
 }
